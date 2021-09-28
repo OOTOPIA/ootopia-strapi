@@ -24,48 +24,67 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     env:
-        ZPRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
-        ZHOSTNAME : ${{ secrets.HOSTNAME  }}
-        ZUSER_NAME : ${{ secrets.USER_NAME  }}
+        PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+        HOSTNAME : ${{ secrets.HOSTNAME  }}
+        USER_NAME : ${{ secrets.USER_NAME  }}
     steps:
-      - run: echo "$ZPRIVATE_KEY"
-      - run: echo "$ZHOSTNAME"
-      - run: echo "$ZUSER_NAME"
-      - run: echo "$ZPRIVATE_KEY" > private_key && chmod 600 private_key
-      - run: ssh -o StrictHostKeyChecking=no -i private_key ubuntu@3.226.108.218 uptime
+      - run: echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+      - run: ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} uptime
       - run: |
-          ssh -i private_key ubuntu@3.226.108.218 '
+          ssh -i private_key ${USER_NAME}@${HOSTNAME} '
           . ~/.nvm/nvm.sh &&
           pwd &&
-          cd ootopia-strapi-develop
+          cd ootopia-strapi-develop &&
           pwd &&
-          git pull origin develop
+          git pull origin develop &&
+          npm i &&
+          npm run build &&
+          pm2 delete ootopia-strapi-develop &&
+          pm2 start npm --name "ootopia-strapi-develop" -- start
           '
-      # - run: git pull origin develop
-      # - run: npm i
-      # - run: npm run build
-      # - run: pm2 delete ootopia-strapi-develop
-      # - run: pm2 start npm --name "ootopia-strapi-develop" -- start
-          
   deploy_staging:
     if: contains( github.ref, 'staging')
     runs-on: ubuntu-latest
     needs: build
+    env:
+        PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+        HOSTNAME : ${{ secrets.HOSTNAME  }}
+        USER_NAME : ${{ secrets.USER_NAME  }}
     steps:
-    - uses: actions/checkout@v2 
-    - name: Deploy in EC2
-      env:
-          PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
-          HOSTNAME : ${{ secrets.HOSTNAME  }}
-          USER_NAME : ${{ secrets.USER_NAME  }}
-      run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} uptime
-        ssh -i private_key ${USER_NAME}@${HOSTNAME} '
-        cd /home/ubuntu/ootopia-strapi-staging &&
-        git pull origin staging &&
-        npm i &&
-        npm run build &&
-        pm2 delete ootopia-strapi-staging &&
-        pm2 start npm --name "ootopia-strapi-staging" -- start
+      - run: echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+      - run: ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} uptime
+      - run: |
+          ssh -i private_key ${USER_NAME}@${HOSTNAME} '
+          . ~/.nvm/nvm.sh &&
+          pwd &&
+          cd ootopia-strapi-staging &&
+          pwd &&
+          git pull origin staging &&
+          npm i &&
+          npm run build &&
+          pm2 delete ootopia-strapi-staging &&
+          pm2 start npm --name "ootopia-strapi-staging" -- start
+          '
+  deploy_beta:
+    if: contains( github.ref, 'beta')
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+        PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+        HOSTNAME : ${{ secrets.HOSTNAME  }}
+        USER_NAME : ${{ secrets.USER_NAME  }}
+    steps:
+      - run: echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+      - run: ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} uptime
+      - run: |
+          ssh -i private_key ${USER_NAME}@${HOSTNAME} '
+          . ~/.nvm/nvm.sh &&
+          pwd &&
+          cd ootopia-strapi-beta &&
+          pwd &&
+          git pull origin beta &&
+          npm i &&
+          npm run build &&
+          pm2 delete ootopia-strapi-beta &&
+          pm2 start npm --name "ootopia-strapi-beta" -- start
           '
