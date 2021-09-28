@@ -30,10 +30,7 @@ jobs:
           PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
           HOSTNAME : ${{ secrets.HOSTNAME  }}
           USER_NAME : ${{ secrets.USER_NAME  }}
-    - run: echo "${PRIVATE_KEY}"
-    - run: echo "${HOSTNAME}"
-    - run: echo "${USER_NAME}"
-    - run: echo "teste"
+      run: echo "${PRIVATE_KEY}"
   deploy_staging:
     if: contains( github.ref, 'staging')
     runs-on: ubuntu-latest
