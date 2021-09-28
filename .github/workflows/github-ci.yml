@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: 10.16.3
         cache: 'npm'
-    # - run: npm i
+    - run: npm i
     # - run: npm test
 
   deploy_develop:
@@ -37,7 +37,7 @@ jobs:
           cd ootopia-strapi-develop &&
           pwd &&
           git pull origin develop &&
-          npm i &&
+          npm ci &&
           npm run build &&
           pm2 delete ootopia-strapi-develop &&
           pm2 start npm --name "ootopia-strapi-develop" -- start
@@ -56,11 +56,9 @@ jobs:
       - run: |
           ssh -i private_key ${USER_NAME}@${HOSTNAME} '
           . ~/.nvm/nvm.sh &&
-          pwd &&
           cd ootopia-strapi-staging &&
-          pwd &&
           git pull origin staging &&
-          npm i &&
+          npm ci &&
           npm run build &&
           pm2 delete ootopia-strapi-staging &&
           pm2 start npm --name "ootopia-strapi-staging" -- start
@@ -79,11 +77,9 @@ jobs:
       - run: |
           ssh -i private_key ${USER_NAME}@${HOSTNAME} '
           . ~/.nvm/nvm.sh &&
-          pwd &&
           cd ootopia-strapi-beta &&
-          pwd &&
           git pull origin beta &&
-          npm i &&
+          npm ci &&
           npm run build &&
           pm2 delete ootopia-strapi-beta &&
           pm2 start npm --name "ootopia-strapi-beta" -- start
