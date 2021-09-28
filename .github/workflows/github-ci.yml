@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: 10.15.3
         cache: 'npm'
-    - run: npm ci
+    - run: npm i
     - run: npm run build --if-present
     # - run: npm test
 
@@ -37,7 +37,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
         cd ${{ env.PATH }}
         git pull origin ${{ env.BRANCH }}
-        npm ci
+        npm i
         npm run build
         pm2 delete ${{ env.PM2_SERVICE }}
         pm2 start npm --name "${{ env.PM2_SERVICE }}" -- start
@@ -59,7 +59,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
         cd ${{ env.PATH }}
         git pull origin ${{ env.BRANCH }}
-        npm ci
+        npm i
         npm run build
         pm2 delete ${{ env.PM2_SERVICE }}
         pm2 start npm --name "${{ env.PM2_SERVICE }}" -- start
