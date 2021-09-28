@@ -37,7 +37,7 @@ jobs:
         echo "$PRIVATE_KEY" &&
         echo "$HOSTNAME" &&
         echo "$USER_NAME" &&
-        cd /home/ubuntu/ootopia-stsrapi-develop &&
+        cd /home/ubuntu/ootopia-strapi-develop &&
         git pull origin develop &&
         npm i &&
         npm run build &&
