@@ -32,6 +32,7 @@ jobs:
           USER_NAME : ${{ secrets.USER_NAME  }}
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} uptime
         ssh -i private_key ${USER_NAME}@${HOSTNAME} '
         . ~/.nvm/nvm.sh &&
         cd /home/ubuntu/ootopia-strapi-develop &&
@@ -54,7 +55,8 @@ jobs:
           USER_NAME : ${{ secrets.USER_NAME  }}
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} uptime
+        ssh -i private_key ${USER_NAME}@${HOSTNAME} '
         cd /home/ubuntu/ootopia-strapi-staging &&
         git pull origin staging &&
         npm i &&
