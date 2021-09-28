@@ -7,17 +7,17 @@ on:
     branches: [ main, prod, beta, staging, develop ]
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Use Node.js ${{ matrix.node-version }}
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: 10.16.3
-  #       cache: 'npm'
-  #   # - run: npm i
-  #   # - run: npm test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: 10.16.3
+        cache: 'npm'
+    # - run: npm i
+    # - run: npm test
 
   deploy_develop:
     if: contains( github.ref, 'develop')
