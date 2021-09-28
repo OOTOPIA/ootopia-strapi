@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: 10.16.3
         cache: 'npm'
-    - run: npm i
+    # - run: npm i
     # - run: npm test
 
   deploy_develop:
@@ -31,12 +31,12 @@ jobs:
           HOSTNAME : ${{ secrets.HOSTNAME  }}
           USER_NAME : ${{ secrets.USER_NAME  }}
       run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key &&
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
         . ~/.nvm/nvm.sh &&
-        echo "$PRIVATE_KEY" &&
-        echo "$HOSTNAME" &&
-        echo "$USER_NAME" &&
+        echo "${PRIVATE_KEY}" &&
+        echo "${HOSTNAME}" &&
+        echo "${USER_NAME}" &&
         cd /home/ubuntu/ootopia-strapi-develop &&
         git pull origin develop &&
         npm i &&
