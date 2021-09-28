@@ -1,0 +1,66 @@
+name: Build and run tests
+
+on:
+  push:
+    branches: [ main, prod, beta, staging, develop ]
+  pull_request:
+    branches: [ main, prod, beta, staging, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: 10.15.3
+        cache: 'npm'
+    - run: npm i
+    - run: npm run build --if-present
+    # - run: npm test
+
+  deploy_develop:
+    if: contains( github.ref, 'develop')
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v2 
+    - name: Deploy in EC2
+      env:
+          name: develop
+          PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+          HOSTNAME : ${{ secrets.HOSTNAME  }}
+          USER_NAME : ${{ secrets.USER_NAME  }}
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+        cd ${{ env.PATH }}
+        git pull origin ${{ env.BRANCH }}
+        npm i
+        npm run build
+        pm2 delete ${{ env.PM2_SERVICE }}
+        pm2 start npm --name "${{ env.PM2_SERVICE }}" -- start
+          '
+  deploy_staging:
+    if: contains( github.ref, 'staging')
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v2 
+    - name: Deploy in EC2
+      env:
+          name: staging
+          PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+          HOSTNAME : ${{ secrets.HOSTNAME  }}
+          USER_NAME : ${{ secrets.USER_NAME  }}
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+        cd ${{ env.PATH }}
+        git pull origin ${{ env.BRANCH }}
+        npm i
+        npm run build
+        pm2 delete ${{ env.PM2_SERVICE }}
+        pm2 start npm --name "${{ env.PM2_SERVICE }}" -- start
+          '
