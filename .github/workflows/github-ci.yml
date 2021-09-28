@@ -34,14 +34,14 @@ jobs:
       - run: echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
       - run: ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} uptime
       - run: |
-        ssh -i private_key ${USER_NAME}@${HOSTNAME} '
-        cd /home/ubuntu/ootopia-strapi-develop &&
-        git pull origin develop &&
-        npm i &&
-        npm run build &&
-        pm2 delete ootopia-strapi-develop &&
-        pm2 start npm --name "ootopia-strapi-develop" -- start
-        '
+          ssh -i private_key ${USER_NAME}@${HOSTNAME} '
+          cd /home/ubuntu/ootopia-strapi-develop &&
+          git pull origin develop &&
+          npm i &&
+          npm run build &&
+          pm2 delete ootopia-strapi-develop &&
+          pm2 start npm --name "ootopia-strapi-develop" -- start
+          '
   deploy_staging:
     if: contains( github.ref, 'staging')
     runs-on: ubuntu-latest
