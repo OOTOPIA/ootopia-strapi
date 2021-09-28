@@ -30,20 +30,10 @@ jobs:
           PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
           HOSTNAME : ${{ secrets.HOSTNAME  }}
           USER_NAME : ${{ secrets.USER_NAME  }}
-      run: |
-        echo "${PRIVATE_KEY}" &&
-        echo "${HOSTNAME}" &&
-        echo "${USER_NAME}" &&
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key &&
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-        . ~/.nvm/nvm.sh &&
-        cd /home/ubuntu/ootopia-strapi-develop &&
-        git pull origin develop &&
-        npm i &&
-        npm run build &&
-        pm2 delete ootopia-strapi-develop &&
-        pm2 start npm --name "ootopia-strapi-develop" -- start
-          '
+      run: echo "${PRIVATE_KEY}"
+      run: echo "${HOSTNAME}"
+      run: echo "${USER_NAME}"
+      run: echo "teste"
   deploy_staging:
     if: contains( github.ref, 'staging')
     runs-on: ubuntu-latest
