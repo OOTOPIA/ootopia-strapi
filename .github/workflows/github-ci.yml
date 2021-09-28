@@ -35,6 +35,7 @@ jobs:
       - run: ssh -o StrictHostKeyChecking=no -i private_key ubuntu@3.226.108.218 uptime
       - run: ssh -i private_key ubuntu@3.226.108.218 << EOSSH
       - run: . ~/.nvm/nvm.sh
+      - run: pwd
       - run: cd ootopia-strapi-develop
       - run: git pull origin develop
       - run: npm i
