@@ -24,25 +24,27 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     env:
-        PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
-        HOSTNAME : ${{ secrets.HOSTNAME  }}
-        USER_NAME : ${{ secrets.USER_NAME  }}
+        ZPRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+        ZHOSTNAME : ${{ secrets.HOSTNAME  }}
+        ZUSER_NAME : ${{ secrets.USER_NAME  }}
     steps:
-      - run: echo "$PRIVATE_KEY"
-      - run: echo "$HOSTNAME"
-      - run: echo "$USER_NAME"
-      - run: echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+      - run: echo "$ZPRIVATE_KEY"
+      - run: echo "$ZHOSTNAME"
+      - run: echo "$ZUSER_NAME"
+      - run: echo "$ZPRIVATE_KEY" > private_key && chmod 600 private_key
       - run: ssh -o StrictHostKeyChecking=no -i private_key ubuntu@3.226.108.218 uptime
-      - run: ssh -i private_key ubuntu@3.226.108.218 << EOSSH
-      - run: . ~/.nvm/nvm.sh
-      - run: pwd
-      - run: cd ootopia-strapi-develop
-      - run: git pull origin develop
-      - run: npm i
-      - run: npm run build
-      - run: pm2 delete ootopia-strapi-develop
-      - run: pm2 start npm --name "ootopia-strapi-develop" -- start
-      - run: EOSSH
+      - run: |
+          ssh -i private_key ubuntu@3.226.108.218 '
+          . ~/.nvm/nvm.sh &&
+          pwd &&
+          cd ootopia-strapi-develop
+          pwd
+          '
+      # - run: git pull origin develop
+      # - run: npm i
+      # - run: npm run build
+      # - run: pm2 delete ootopia-strapi-develop
+      # - run: pm2 start npm --name "ootopia-strapi-develop" -- start
           
   deploy_staging:
     if: contains( github.ref, 'staging')
