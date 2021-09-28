@@ -28,11 +28,11 @@ jobs:
         HOSTNAME : ${{ secrets.HOSTNAME  }}
         USER_NAME : ${{ secrets.USER_NAME  }}
     steps:
-      - uses: actions/checkout@v2 
-      - name: Deploy in EC2
-      - run: echo "${PRIVATE_KEY}"
-      - run: echo "${HOSTNAME}"
-      - run: echo "${USER_NAME}"
+    - uses: actions/checkout@v2 
+    - name: Deploy in EC2
+    - run: echo "${PRIVATE_KEY}"
+    - run: echo "${HOSTNAME}"
+    - run: echo "${USER_NAME}"
   deploy_staging:
     if: contains( github.ref, 'staging')
     runs-on: ubuntu-latest
