@@ -33,8 +33,8 @@ jobs:
       - run: echo "$USER_NAME"
       - run: echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
       - run: ssh -o StrictHostKeyChecking=no -i private_key ubuntu@3.226.108.218 uptime
-      - run: ssh -i private_key ubuntu@3.226cd ootopia-strapi-develop &&.108.218 << EOSSH
-      - run: 
+      - run: ssh -i private_key ubuntu@3.226.108.218 << EOSSH
+      - run: cd ootopia-strapi-develop &&
       - run: git pull origin develop &&
       - run: npm i &&
       - run: npm run build &&
