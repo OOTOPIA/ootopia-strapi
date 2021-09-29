@@ -1,3 +1,5 @@
+[![Foo](https://static.wixstatic.com/media/ca276f_2ad7374dcb514aa78c9d35bd3e0c364f~mv2.png/v1/fill/w_295,h_87,al_c,q_85,usm_0.66_1.00_0.01/logo%20OO%2001%20horz%20blue%20small.webp)](https://www.ootopia.org/)
+
 # OOTOPIA STRAPI CMS
 
 [![GitHub license](https://img.shields.io/github/license/OOTOPIA/ootopia-strapi)](https://github.com/OOTOPIA/ootopia-strapi/blob/main/LICENSE)
