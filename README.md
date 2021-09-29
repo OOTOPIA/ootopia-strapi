@@ -1,5 +1,7 @@
 # OOTOPIA STRAPI CMS
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 ### Project description
 
 - This CMS is used by client to create Learning Tracks and the data created here will be consumed by Ootopia's API.
