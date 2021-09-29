@@ -1,6 +1,10 @@
 # OOTOPIA STRAPI CMS
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![GitHub license](https://img.shields.io/github/license/OOTOPIA/ootopia-strapi)](https://github.com/OOTOPIA/ootopia-strapi/blob/main/LICENSE)
+[![.github/workflows/github-ci.yml](https://github.com/OOTOPIA/ootopia-strapi/actions/workflows/github-ci.yml/badge.svg?branch=develop)](https://github.com/OOTOPIA/ootopia-strapi/actions/workflows/github-ci.yml)
+[![GitHub stars](https://img.shields.io/github/stars/OOTOPIA/ootopia-strapi)](https://github.com/OOTOPIA/ootopia-strapi/stargazers)
+![GitHub repo size](https://img.shields.io/github/repo-size/OOTOPIA/ootopia-strapi)
+![GitHub last commit](https://img.shields.io/github/last-commit/OOTOPIA/ootopia-strapi)
 
 ### Project description
 
