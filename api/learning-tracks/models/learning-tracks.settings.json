@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "learning_tracks",
+  "info": {
+    "name": "Learning Tracks",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tittle": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "episode": {
+      "type": "component",
+      "repeatable": false,
+      "component": "episode.episode"
+    },
+    "should_appear": {
+      "type": "boolean"
+    }
+  }
+}
