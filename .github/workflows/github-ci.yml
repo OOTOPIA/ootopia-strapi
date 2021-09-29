@@ -38,7 +38,7 @@ jobs:
           pwd &&
           git pull origin develop &&
           npm ci &&
-          npm run build &&
+          NODE_ENV=production npm run build &&
           pm2 delete ootopia-strapi-develop &&
           pm2 start npm --name "ootopia-strapi-develop" -- start
           '
@@ -59,7 +59,7 @@ jobs:
           cd ootopia-strapi-staging &&
           git pull origin staging &&
           npm ci &&
-          npm run build &&
+          NODE_ENV=production npm run build &&
           pm2 delete ootopia-strapi-staging &&
           pm2 start npm --name "ootopia-strapi-staging" -- start
           '
@@ -80,7 +80,7 @@ jobs:
           cd ootopia-strapi-beta &&
           git pull origin beta &&
           npm ci &&
-          npm run build &&
+          NODE_ENV=production npm run build &&
           pm2 delete ootopia-strapi-beta &&
           pm2 start npm --name "ootopia-strapi-beta" -- start
           '
