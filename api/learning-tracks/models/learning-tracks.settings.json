@@ -49,7 +49,7 @@
     },
     "episode": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "episode.episode",
       "pluginOptions": {
         "i18n": {
