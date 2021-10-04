@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "learning_tracks",
+  "collectionName": "market_places",
   "info": {
-    "name": "Learning Tracks",
+    "name": "Market Place",
     "description": ""
   },
   "options": {
@@ -47,31 +47,14 @@
         }
       }
     },
-    "episode": {
-      "type": "component",
-      "repeatable": true,
-      "component": "episode.episode",
+    "price": {
+      "type": "decimal",
+      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
-    },
-    "should_appear": {
-      "type": "boolean",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "location": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
     }
   }
 }
