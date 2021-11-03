@@ -73,6 +73,15 @@
         }
       },
       "type": "string"
+    },
+    "author": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "email",
+      "required": false
     }
   }
 }
