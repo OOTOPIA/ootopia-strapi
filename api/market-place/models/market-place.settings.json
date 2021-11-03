@@ -63,6 +63,14 @@
         }
       },
       "type": "string"
+    },
+    "seller": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "email"
     }
   }
 }
