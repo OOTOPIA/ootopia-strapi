@@ -82,6 +82,17 @@
       },
       "type": "email",
       "required": false
+    },
+    "show_at_timeline": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": false,
+      "unique": false,
+      "required": false
     }
   }
 }
