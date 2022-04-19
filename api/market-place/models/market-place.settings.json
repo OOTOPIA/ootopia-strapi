@@ -71,6 +71,11 @@
         }
       },
       "type": "email"
+    },
+    "hashtags": {
+      "via": "market_places",
+      "collection": "hashtags",
+      "dominant": true
     }
   }
 }
