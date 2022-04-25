@@ -25,7 +25,7 @@
       },
       "unique": true,
       "required": true,
-      "regex": "\\S+"
+      "regex": "^[A-Z].*"
     },
     "learning_tracks": {
       "targetColumnName": "Hashtags",
