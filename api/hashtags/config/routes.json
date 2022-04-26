@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/hashtags",
+      "handler": "hashtags.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/hashtags/count",
+      "handler": "hashtags.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/hashtags/:id",
+      "handler": "hashtags.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/hashtags",
+      "handler": "hashtags.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/hashtags/:id",
+      "handler": "hashtags.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/hashtags/:id",
+      "handler": "hashtags.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

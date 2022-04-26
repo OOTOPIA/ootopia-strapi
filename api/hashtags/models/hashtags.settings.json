@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hashtags",
+  "info": {
+    "name": "hashtags",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "unique": true,
+      "required": true,
+      "regex": "^[A-Z].*"
+    },
+    "learning_tracks": {
+      "targetColumnName": "Hashtags",
+      "via": "hashtags",
+      "collection": "learning-tracks"
+    },
+    "market_places": {
+      "via": "hashtags",
+      "collection": "market-place"
+    }
+  }
+}
