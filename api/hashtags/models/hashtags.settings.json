@@ -23,8 +23,7 @@
           "localized": true
         }
       },
-      "required": true,
-      "regex": "^[A-ZÀ-Ú].*"
+      "required": true
     },
     "learning_tracks": {
       "targetColumnName": "Hashtags",
