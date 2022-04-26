@@ -93,6 +93,12 @@
       "default": false,
       "unique": false,
       "required": false
+    },
+    "hashtags": {
+      "via": "learning_tracks",
+      "columnName": "Hashtags",
+      "collection": "hashtags",
+      "dominant": true
     }
   }
 }
