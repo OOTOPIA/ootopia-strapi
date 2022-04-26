@@ -23,7 +23,6 @@
           "localized": true
         }
       },
-      "unique": true,
       "required": true,
       "regex": "^[A-ZÀ-Ú].*"
     },
